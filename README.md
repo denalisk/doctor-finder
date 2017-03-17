@@ -25,7 +25,7 @@
 ## Setup
 
 * Clone this repository
-* create a file called .env and paste in:
+* create a file in the top level of the repository called .env and paste in:
 * >exports.apiKey = "**YOUR API KEY**"
 * >where **YOUR API KEY** is your personal apiKey for BetterDoctor.com
 * run npm install and bower install
