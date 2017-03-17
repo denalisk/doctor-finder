@@ -25,7 +25,7 @@ var Doctor = function(docData) {
   for(var practiceI = 0; practiceI < docData.practices.length; practiceI++) {
     var practice = [docData.practices[practiceI].name,      docData.practices[practiceI].visit_address, []];
     for(var phoneI = 0; phoneI < docData.practices[practiceI].phones.length; phoneI++) {
-      if(!(this.checkContains(practice[2], docData.practices[practiceI].phones[phoneI].number))) {
+      if(!(checkContains(practice[2], docData.practices[practiceI].phones[phoneI].number))) {
         practice[2].push(docData.practices[practiceI].phones[phoneI].number);
       }
     }
@@ -38,7 +38,7 @@ Doctor.prototype.getNameTitle =  function() {
   return (this.firstName + " " + this.middleName + " " + this.lastName + ", " + this.mainTitle);
 }
 
-MedicalSearch.prototype.checkContains = function(checkArray, checkItem) {
+var checkContains = function(checkArray, checkItem) {
   for(var index = 0; index < checkArray.length; index++) {
     if(checkItem === checkArray[index]) {
       return true;
@@ -60,13 +60,17 @@ MedicalSearch.prototype.findDoctors = function(searchDataArray, displayFunction)
   var doctorApiKey = searchDataArray[5];
   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + searchQuery + "&location=" + lat + "%2C" + long + "%2C100&user_location=" + lat + "%2C" + long + "&skip=" + (page * 10) + "&limit=10&user_key=" + doctorApiKey)
   .then(function(result) {
-    console.log(result);
-    for(var index = 0; index < result.data.length; index++) {
-      var newDoctor = new Doctor(result.data[index]);
-      console.log(newDoctor);
-      displayFunction(newDoctor);
+    // console.log(result);
+    if(!(result.data.length)) {
+      displayFunction("none");
+    } else {
+      for(var index = 0; index < result.data.length; index++) {
+        var newDoctor = new Doctor(result.data[index]);
+        console.log(newDoctor);
+        displayFunction(newDoctor);
+      }
     }
-    console.log(current.doctors);
+    // console.log(current.doctors);
   })
   .fail(function(error) {
     console.log("There was an error with the doctor API request");
@@ -74,3 +78,4 @@ MedicalSearch.prototype.findDoctors = function(searchDataArray, displayFunction)
 }
 
 exports.searchModule = MedicalSearch;
+exports.checkContains = checkContains;
