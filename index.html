@@ -15,12 +15,15 @@
       </p>
       <form class="basic-form" id="main-form">
         <h3>Is there something strange?</h3>
-        <input class="form-control" type="text" id="search-query" placeholder="What's wrong? (do you have the flu, a stomachache, ghosts...)" required>
+        <input class="form-control" type="text" id="search-query" placeholder="What's wrong? (do you have the flu, a stomachache, ghosts...)" required value="broken bone">
         <hr />
         <h3>What's your neighborhood?</h3>
-        <input class="form-control" type="text" id="search-location" placeholder="Enter a city, state, zip code, or some combination of those" required>
+        <input class="form-control" type="text" id="search-location" placeholder="Enter a city, state, zip code, or some combination of those" required value="seattle">
         <button class="btn btn-danger" type="submit" id="search-button">Find who to call</button>
       </form>
+      <div class="doctor-container">
+
+      </div>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvJDgkKczZfeqKFvFgV3o8rHOGPRKk1qQ"></script>
   </body>
 </html>
