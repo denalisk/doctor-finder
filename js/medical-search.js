@@ -7,13 +7,17 @@ var Doctor = function(docData) {
   this.uId = dId;
   this.firstName = docData.profile.first_name;
   this.lastName = docData.profile.last_name;
-  this.middleName = docData.profile.middle_name;
+  this.middleName = "";
   this.picture = docData.profile.image_url;
   this.gender = docData.profile.gender;
   this.mainTitle = docData.profile.title;
   this.specialties = [];
   this.practices = []
   // practices looks like [["name", address_object, [phone1, phone2]]]
+
+  if(docData.profile.middle_name) {
+    this.middleName = docData.profile.middle_name;
+  }
 
   for(var specialtyI = 0; specialtyI < docData.specialties.length; specialtyI++) {
     this.specialties.push(docData.specialties[specialtyI].name);
@@ -42,10 +46,18 @@ var checkContains = function(checkArray, checkItem) {
   }
 }
 
-MedicalSearch.prototype.findDoctors = function(searchQuery, cityDataArray, page, doctorApiKey, displayFunction) {
+MedicalSearch.prototype.createDataArray = function(locationString, searchQuery, page, doctorApiKey) {
+  return [locationString, 47.6062, -122.3321, searchQuery, page, doctorApiKey];
+}
+
+MedicalSearch.prototype.findDoctors = function(searchDataArray displayFunction) {
   var current = this;
-  var lat = cityDataArray[1];
-  var long = cityDataArray[2];
+  var searchQuery = searchDataArray[0];
+  var lat = searchDataArray[1];
+  var long = searchDataArray[2];
+  var searchQuery = searchDataArray[3];
+  var page = searchDataArray[4];
+  var doctorApiKey = searchDataArray[5];
   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + searchQuery + "&location=" + lat + "%2C" + long + "%2C100&user_location=" + lat + "%2C" + long + "&skip=" + (page * 25) + "&limit=5&user_key=" + doctorApiKey)
   .then(function(result) {
     console.log(result);
