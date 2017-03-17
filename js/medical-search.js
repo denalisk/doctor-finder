@@ -58,7 +58,7 @@ MedicalSearch.prototype.findDoctors = function(searchDataArray, displayFunction)
   var searchQuery = searchDataArray[3];
   var page = searchDataArray[4];
   var doctorApiKey = searchDataArray[5];
-  $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + searchQuery + "&location=" + lat + "%2C" + long + "%2C100&user_location=" + lat + "%2C" + long + "&skip=" + (page * 25) + "&limit=5&user_key=" + doctorApiKey)
+  $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + searchQuery + "&location=" + lat + "%2C" + long + "%2C100&user_location=" + lat + "%2C" + long + "&skip=" + (page * 10) + "&limit=10&user_key=" + doctorApiKey)
   .then(function(result) {
     console.log(result);
     for(var index = 0; index < result.data.length; index++) {
