@@ -5,6 +5,7 @@ var Search = require("./../js/medical-search.js").searchModule;
 $(function() {
   var newSearch = new Search();
   var newMap = new Map();
+  var page = 1;
 
   $("#main-form").submit(function(event) {
     event.preventDefault();
@@ -12,7 +13,7 @@ $(function() {
     var searchQuery = $("#search-query").val();
     var searchLocation = $("#search-location").val();
     var cityDataArray = newMap.createCityDataArray(searchLocation);
-    newSearch.findDoctors(searchQuery, cityDataArray, Key);
+    newSearch.findDoctors(searchQuery, cityDataArray, page, Key);
     // newMap.getCoordinates(newMap.createCityDataArray(searchLocation));
   });
 
