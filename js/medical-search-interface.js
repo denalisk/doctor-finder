@@ -1,6 +1,8 @@
 var Key = require("./../.env").apiKey;
 var Map = require("./../js/map.js").mapModule;
 var Search = require("./../js/medical-search.js").searchModule;
+var villains = [
+  "Rowan North", "Vigo the Carpathian", "Gozer", "James Moriarty", "Stay Puft Marshmallow Man", "Zuul", "Ivo Shandor", "Psychomagnotheric Slime", "ghost", "ghosts", "ghostbusters", "ghostbuster"];
 
 var displayDoctor = function(doctorObject, displayFunction) {
   var specialtyString = "";
@@ -35,15 +37,23 @@ $(function() {
     console.log("clicky");
     searchQuery = $("#search-query").val();
     searchLocation = $("#search-location").val();
-    searchDataArray = newSearch.createDataArray(searchLocation, searchQuery, page, Key);
-    // newSearch.findDoctors(searchDataArray, displayDoctor);
-    newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
-    $("#load-more").show();
+    if(newSearch.checkContains(villains, searchQuery)) {
+      $(".bonus-div").show();
+    } else {
+      searchDataArray = newSearch.createDataArray(searchLocation, searchQuery, page, Key);
+      // newSearch.findDoctors(searchDataArray, displayDoctor);
+      newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
+      $("#load-more").show();
+    }
   });
 
   $("#load-more").click(function() {
     searchDataArray[4] += 1;
     newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
+  });
+
+  $(".bonus-div").click(function() {
+    $(this).hide();
   });
 
 });

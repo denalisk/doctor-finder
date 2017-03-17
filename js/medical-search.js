@@ -25,7 +25,7 @@ var Doctor = function(docData) {
   for(var practiceI = 0; practiceI < docData.practices.length; practiceI++) {
     var practice = [docData.practices[practiceI].name,      docData.practices[practiceI].visit_address, []];
     for(var phoneI = 0; phoneI < docData.practices[practiceI].phones.length; phoneI++) {
-      if(!(checkContains(practice[2], docData.practices[practiceI].phones[phoneI].number))) {
+      if(!(this.checkContains(practice[2], docData.practices[practiceI].phones[phoneI].number))) {
         practice[2].push(docData.practices[practiceI].phones[phoneI].number);
       }
     }
@@ -38,7 +38,7 @@ Doctor.prototype.getNameTitle =  function() {
   return (this.firstName + " " + this.middleName + " " + this.lastName + ", " + this.mainTitle);
 }
 
-var checkContains = function(checkArray, checkItem) {
+MedicalSearch.prototype.checkContains = function(checkArray, checkItem) {
   for(var index = 0; index < checkArray.length; index++) {
     if(checkItem === checkArray[index]) {
       return true;

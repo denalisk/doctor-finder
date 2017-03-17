@@ -14,3 +14,15 @@ body {
 #load-more {
   display: none;
 }
+
+.bonus-div {
+ background-image: url('https://media4.giphy.com/media/3o72F2L76BliFmTxVC/giphy.gif');
+ background-size: cover;
+ display: none;
+ position: absolute;
+ z-index: 100;
+ top: 0px;
+ left: 0px;
+ height: 100vh;
+ width: 100%;
+}
