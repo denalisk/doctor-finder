@@ -1,18 +1,19 @@
-var Keys = require("./../.env").apiKeyModule;
-
-var myKeys = new Keys();
-
-
+var Key = require("./../.env").apiKey;
+var Map = require("./../js/map.js").mapModule;
+var Search = require("./../js/medical-search.js").searchModule;
 
 $(function() {
-  document.getElementById('script-holder').innerHTML += "<" + "scr" + "ipt>src='https://maps.googleapis.com/maps/api/js?key=" + myKeys.googleMapsKey + "' async defer><" + "/sc" + "ript>";
-  
-  console.log("in");
-  $("#search-button").click(function() {
+  var newSearch = new Search();
+  var newMap = new Map();
+
+  $("#main-form").submit(function(event) {
+    event.preventDefault();
     console.log("clicky");
     var searchQuery = $("#search-query").val();
     var searchLocation = $("#search-location").val();
-    console.log("query is " + searchQuery + "\n location is " + searchLocation);
+    var cityDataArray = newMap.createCityDataArray(searchLocation);
+    newSearch.findDoctors(searchQuery, cityDataArray, Key);
+    // newMap.getCoordinates(newMap.createCityDataArray(searchLocation));
   });
 
 });

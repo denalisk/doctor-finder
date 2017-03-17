@@ -13,12 +13,14 @@
       <p>
         Image of germbusters here
       </p>
-      <h3>Is there something strange?</h3>
-      <input class="form-control" type="text" id="search-query" placeholder="What's wrong? (do you have the flu, a stomachache, ghosts...)">
-      <hr />
-      <h3>What's your neighborhood?</h3>
-      <input class="form-control" type="text" id="search-location" placeholder="Enter a city, state, zip code, or some combination of those">
-      <button class="btn btn-danger"type="button" id="search-button" value="hi">Find who to call</button>
-      <div id="script-holder"></div>
+      <form class="basic-form" id="main-form">
+        <h3>Is there something strange?</h3>
+        <input class="form-control" type="text" id="search-query" placeholder="What's wrong? (do you have the flu, a stomachache, ghosts...)" required>
+        <hr />
+        <h3>What's your neighborhood?</h3>
+        <input class="form-control" type="text" id="search-location" placeholder="Enter a city, state, zip code, or some combination of those" required>
+        <button class="btn btn-danger" type="submit" id="search-button">Find who to call</button>
+      </form>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvJDgkKczZfeqKFvFgV3o8rHOGPRKk1qQ"></script>
   </body>
 </html>
