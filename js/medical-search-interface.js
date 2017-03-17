@@ -32,9 +32,9 @@ $(function() {
     console.log("clicky");
     var searchQuery = $("#search-query").val();
     var searchLocation = $("#search-location").val();
-    var searchDataArray = newSearch.createDataArray(searchLocation, searchQuery, page, Key);
+    // var searchDataArray = newSearch.createDataArray(searchLocation, searchQuery, page, Key);
     // newSearch.findDoctors(searchDataArray, displayDoctor);
-    newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
+    // newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
   });
 
 });

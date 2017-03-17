@@ -17,6 +17,6 @@ Map.prototype.getCoordinates = function(searchDataArray, searchFunction, display
       console.log('Geocode was not successful for the following reason: ' + status);
     }
   });
-};
+}
 
 exports.mapModule = Map;
