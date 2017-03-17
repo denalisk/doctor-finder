@@ -33,8 +33,8 @@ $(function() {
     var searchQuery = $("#search-query").val();
     var searchLocation = $("#search-location").val();
     var searchDataArray = newSearch.createDataArray(searchLocation, searchQuery, page, Key);
-    newSearch.findDoctors(searchDataArray, displayDoctor);
-    // newMap.getCoordinates(newMap.createCityDataArray(searchLocation));
+    // newSearch.findDoctors(searchDataArray, displayDoctor);
+    newMap.getCoordinates(searchDataArray, newSearch.findDoctors, displayDoctor);
   });
 
 });
